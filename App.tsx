@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { NavigationContainer } from "@react-navigation/native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 
-import { Provider } from "react-redux"
+import { Provider as ReduxProvider } from "react-redux"
 import { store } from "./store"
 
 import HomeScreen from './screens/HomeScreen'
@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Provider store={store}>
+      <ReduxProvider store={store}>
         <SafeAreaProvider>
           <Stack.Navigator
             initialRouteName="Home"
@@ -48,7 +48,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </SafeAreaProvider>
-      </Provider>
+      </ReduxProvider>
     </NavigationContainer>
   )
 }
