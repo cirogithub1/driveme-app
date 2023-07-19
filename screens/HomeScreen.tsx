@@ -16,6 +16,7 @@ import { setOrigin } from '../slices/navSlice'
 import { GOOGLE_MAPS_API_KEY } from "@env"
 //@ts-ignore
 import taxi from '../assets/taxi.png'
+import NavFavorites from '../components/NavFavorites'
 
 export type NavigationProps = NativeStackNavigationProp<
 	RootStackParamList, 
@@ -35,7 +36,7 @@ const HomeScreen = () => {
 					nearbyPlacesAPI='GooglePlacesSearch'
 					enablePoweredByContainer={false}
 					debounce={400} 
-					placeholder='De'
+					placeholder='D`ou'
 					query={{
 						key: GOOGLE_MAPS_API_KEY,
 						language: 'fr',
@@ -67,6 +68,7 @@ const HomeScreen = () => {
 				/>
 
 				<NavOptions />
+				<NavFavorites />
 			</View>
 		</SafeAreaView>
 	)

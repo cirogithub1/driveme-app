@@ -5,12 +5,12 @@ import Map from '../components/Map'
 import NavigateCard from '../components/NavigateCard'
 import RideOptionsCard from '../components/RideOptionsCard'
 
-export type RootStackParamNav = {
+export type RootStackParamMap = {
   Navigate: undefined
   RideOptions: undefined
 }
 
-const Stack = createNativeStackNavigator<RootStackParamNav>()
+const Stack = createNativeStackNavigator<RootStackParamMap>()
 
 const MapScreen = () => {
 

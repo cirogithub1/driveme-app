@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { NavigationContainer } from "@react-navigation/native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
+import { KeyboardAvoidingView, Platform } from "react-native"
 
 import { Provider as ReduxProvider } from "react-redux"
 import { store } from "./store"
@@ -23,30 +24,36 @@ export default function App() {
     <NavigationContainer>
       <ReduxProvider store={store}>
         <SafeAreaProvider>
-          <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-              statusBarStyle: "dark",
-              headerShown: false, 
-              navigationBarHidden: true, 
-              statusBarHidden: true,
-            }}
+          <KeyboardAvoidingView 
+            className="flex-1"
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? -50 : 0}
           >
-            <Stack.Screen 
-              name="Home" 
-              component={HomeScreen}
-            />
+            <Stack.Navigator
+              initialRouteName="Home"
+              screenOptions={{
+                statusBarStyle: "dark",
+                headerShown: false, 
+                navigationBarHidden: true, 
+                statusBarHidden: true,
+              }}
+            >
+              <Stack.Screen 
+                name="Home" 
+                component={HomeScreen}
+              />
 
-            <Stack.Screen 
-              name="Map" 
-              component={MapScreen}
-            />
+              <Stack.Screen 
+                name="Map" 
+                component={MapScreen}
+              />
 
-            <Stack.Screen 
-              name="Eats" 
-              component={EatsScreen}
-            />
-          </Stack.Navigator>
+              <Stack.Screen 
+                name="Eats" 
+                component={EatsScreen}
+              />
+            </Stack.Navigator>
+          </KeyboardAvoidingView>
         </SafeAreaProvider>
       </ReduxProvider>
     </NavigationContainer>

@@ -43,6 +43,7 @@ const Map = () => {
 							longitude: origin.location.lng,
 							longitudeDelta: 0.005
 						}}
+						followsUserLocation={true}
 						mapType='mutedStandard'
 					>
 						{destination && (

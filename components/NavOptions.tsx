@@ -44,33 +44,31 @@ const NavOptions = () => {
 	const origin = useSelector(selectOrigin)
 
 	return (
-		<View>
-			<View className='flex-row justify-between px-4'>
-				{data.map((item:any) => (
-					<TouchableOpacity
-						key={item.id}	
-						className='p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-36'
-						onPress={() => (navigation.navigate(item.screen))}
-						disabled={origin ? false : true}
-					>
-						<View className=''>
-							<Image 
-								className='h-20 w-20'
-								source={item.image}
-							/>
+		<View className='flex-row Xjustify-between px-2'>
+			{data.map((item:any) => (
+				<TouchableOpacity
+					key={item.id}	
+					className='p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-36'
+					onPress={() => (navigation.navigate(item.screen))}
+					disabled={origin ? false : true}
+				>
+					<View className=''>
+						<Image 
+							className='h-20 w-20'
+							source={item.image}
+						/>
 
-							<Text className='mt-2 text-base font-semibold'>
-								{item.title}
-							</Text>
-						</View>
+						<Text className='mt-2 text-base font-semibold'>
+							{item.title}
+						</Text>
+					</View>
 
-						<View className={`
-							p-2 rounded-full w-10 mt-4 ${origin ? 'bg-lime-400' : 'opacity-50'}`}>
-							<Icon name='arrowright' color='white' type='antdesign'/>
-						</View>
-					</TouchableOpacity>
-				))}
-			</View>
+					<View className={`
+						p-2 rounded-full w-10 mt-4 ${origin ? 'bg-lime-400' : 'bg-neutral-300'}`}>
+						<Icon name='arrowright' color='white' type='antdesign'/>
+					</View>
+				</TouchableOpacity>
+			))}
 		</View>
 	)
 }

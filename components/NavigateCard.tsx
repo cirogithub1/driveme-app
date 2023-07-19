@@ -1,4 +1,5 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
+import { Icon } from '@rneui/themed'
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 //@ts-ignore
@@ -10,10 +11,11 @@ import { setDestination } from '../slices/navSlice'
 //Navigation
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/native'
-import { RootStackParamNav } from '../screens/MapScreen'
+import { RootStackParamMap } from '../screens/MapScreen'
+import NavFavorites from './NavFavorites'
 
 export type NavigationProps = NativeStackNavigationProp<
-	RootStackParamNav, 
+	RootStackParamMap, 
 	"Navigate">
 
 const NavigateCard = () => {
@@ -46,6 +48,25 @@ const NavigateCard = () => {
 						}}
 					/>
 				</View>
+
+				<NavFavorites />
+			</View>
+
+			<View className='flex-row bg-white justify-evenly py-1 mt-auto'>
+				<TouchableOpacity 
+					className='flex-row bg-black w-24 px-2 py-2 rounded-full justify-evenly'
+					onPress={() => navigation.navigate('RideOptions')}
+				>
+					<Icon name="car" type="ionicon" color='white' size={18} />
+
+					<Text className='text-white text-center text-xs'>Rides</Text>
+				</TouchableOpacity>
+
+				<TouchableOpacity className='flex-row w-24 px-2 py-2 rounded-full justify-evenly'>
+					<Icon name="fast-food" type="ionicon" color='black' size={18} />
+
+					<Text className='text-center text-xs'>Rides</Text>
+				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
 	)

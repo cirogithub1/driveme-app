@@ -1,5 +1,6 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, TouchableOpacity, Text } from 'react-native'
+import { Icon } from '@rneui/themed'
+import { Colors } from '../constants/colors'
 
 const data = [
 	{
@@ -11,7 +12,7 @@ const data = [
 	
 	{
 		id: "234",
-		icon: "briefcase",
+		icon: "work",
 		location: "Work",
 		destination: "Rue de la Paix, Paris, France"
 	}
@@ -20,7 +21,22 @@ const data = [
 const NavFavorites = () => {
 	return (
 		<View>
-			<Text>NavFavorites</Text>
+			{data.map((item:any) =>(
+				<TouchableOpacity
+					key={item.id}
+					className='flex-row items-center p-5'
+				>
+					<View className='mr-2 rounded-full bg-gray-300 p-2'>
+						<Icon name={item.icon} size={20} color='white'/>
+					</View>
+
+					<View className=''>
+						<Text className="text-base font-semibold">{item.location}</Text>
+						<Text className='text-xs text-gray-500'>{item.destination}</Text>
+					</View>
+
+				</TouchableOpacity>
+			))}
 		</View>
 	)
 }
