@@ -1,8 +1,9 @@
+import { useRef } from 'react'
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import { Icon } from '@rneui/themed'
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
-//@ts-ignore
+
 import { GOOGLE_MAPS_API_KEY } from '@env'	
 import { Colors } from '../constants/colors'
 import { useDispatch } from 'react-redux'
@@ -21,14 +22,16 @@ export type NavigationProps = NativeStackNavigationProp<
 const NavigateCard = () => {
 	const dispatch = useDispatch()
 	const navigation = useNavigation<NavigationProps>()
+	const endMapRef = useRef()
 
 	return (
 		<SafeAreaView className='flex-1 bg-white'>
-			<Text className='text-center py-3 text-base'>Hey waht's up?</Text>
+			<Text className='text-center py-3 text-base'>Hey what's up?</Text>
 
 			<View className='border border-gray-200 flex-shrink'>
 				<View>
 					<GooglePlacesAutocomplete 
+						ref={endMapRef}		
 						placeholder='Où vas-tu?'
 						nearbyPlacesAPI='GooglePlacesSearch'
 						debounce={400}
@@ -49,7 +52,7 @@ const NavigateCard = () => {
 					/>
 				</View>
 
-				<NavFavorites />
+				<NavFavorites mapRef={endMapRef}/>
 			</View>
 
 			<View className='flex-row bg-white justify-evenly py-1 mt-auto'>

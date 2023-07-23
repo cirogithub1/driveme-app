@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import {SafeAreaView, View, Image } from 'react-native'
 
 //Navigate
@@ -10,12 +11,10 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 //redux
 import { useDispatch } from 'react-redux'
-import { setOrigin } from '../slices/navSlice'
+import { setDestination, setOrigin } from '../slices/navSlice'
 
-//@ts-ignore
-import { GOOGLE_MAPS_API_KEY } from "@env"
-//@ts-ignore
 import taxi from '../assets/taxi.png'
+import { GOOGLE_MAPS_API_KEY } from "@env"
 import NavFavorites from '../components/NavFavorites'
 
 export type NavigationProps = NativeStackNavigationProp<
@@ -24,6 +23,18 @@ export type NavigationProps = NativeStackNavigationProp<
 
 const HomeScreen = () => {
 	const dispatch = useDispatch()
+	const mapRef = useRef()
+
+	// initialize redux state
+	useEffect(() => {
+		dispatch(
+			setOrigin(null)
+		)
+		
+		dispatch(
+			setDestination(null)
+		)
+	}, [])
 
 	return (
 		<SafeAreaView className = "bg-white h-full">
@@ -33,6 +44,7 @@ const HomeScreen = () => {
 					source={taxi} />
 				
 				<GooglePlacesAutocomplete
+					ref={mapRef}
 					nearbyPlacesAPI='GooglePlacesSearch'
 					enablePoweredByContainer={false}
 					debounce={400} 
@@ -63,12 +75,13 @@ const HomeScreen = () => {
 							setOrigin({
 								location: details.geometry.location,
 								description: data.description
-							}))
-						}}
+							})
+						)
+					}}
 				/>
 
-				<NavOptions />
-				<NavFavorites />
+				<NavOptions homeMapRef = {mapRef}/>
+				<NavFavorites mapRef = {mapRef} />
 			</View>
 		</SafeAreaView>
 	)

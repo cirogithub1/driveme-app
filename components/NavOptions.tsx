@@ -39,7 +39,7 @@ export type NavigationProps = NativeStackNavigationProp<
 	RootStackParamList, 
 	"Home">
 
-const NavOptions = () => {
+const NavOptions = ({ homeMapRef }) => {
 	const navigation = useNavigation<NavigationProps>()
 	const origin = useSelector(selectOrigin)
 
@@ -49,8 +49,11 @@ const NavOptions = () => {
 				<TouchableOpacity
 					key={item.id}	
 					className='p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-36'
-					onPress={() => (navigation.navigate(item.screen))}
 					disabled={origin ? false : true}
+					onPress={() => {
+						navigation.navigate(item.screen)
+						homeMapRef.current?.setAddressText('')
+					}}
 				>
 					<View className=''>
 						<Image 

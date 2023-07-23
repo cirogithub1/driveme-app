@@ -27,7 +27,7 @@ export default function App() {
           <KeyboardAvoidingView 
             className="flex-1"
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS === "ios" ? -50 : 0}
+            keyboardVerticalOffset={Platform.OS === "ios" ? -50 : -50}
           >
             <Stack.Navigator
               initialRouteName="Home"

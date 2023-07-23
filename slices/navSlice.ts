@@ -7,9 +7,9 @@ interface OriginProps {
 	description: string
 }
 interface InitialProps {
-	origin: OriginProps
-	destination: OriginProps
-	travelTimeInformation: OriginProps
+	origin: OriginProps | null
+	destination: OriginProps | null
+	travelTimeInformation: any
 }
 
 const initialState: InitialProps = {
@@ -28,7 +28,7 @@ export const navSlice = createSlice({
 		setDestination: (state, action: PayloadAction<OriginProps>) => {
 			state.destination = action.payload
 		},
-		setTravelTimeInformation: (state, action: PayloadAction<OriginProps>) => {
+		setTravelTimeInformation: (state, action: PayloadAction<any>) => {
 			state.travelTimeInformation = action.payload
 		}
 	}

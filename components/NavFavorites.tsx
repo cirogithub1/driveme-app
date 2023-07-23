@@ -18,7 +18,7 @@ const data = [
 	}
 ]
 
-const NavFavorites = () => {
+const NavFavorites = ({ mapRef }) => {
 	return (
 		<View>
 			{data.map((item:any) =>(
