@@ -1,6 +1,5 @@
 import { View, TouchableOpacity, Text } from 'react-native'
 import { Icon } from '@rneui/themed'
-import { Colors } from '../constants/colors'
 
 const data = [
 	{
